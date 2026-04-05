@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Ninh Bình | Di sản & Bảo tồn bền vững</title>
+    <!-- Google Fonts & Font Awesome - bộ font mới -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', 'Space Grotesk', system-ui, sans-serif;
+            background: #0a0f1f;  /* nền tối xanh đen */
+            color: #eef2ff;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* scrollbar mới */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+            border-radius: 12px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f97316;
+            border-radius: 12px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ea580c;
+        }
+
+        /* card style mới – nổi bật trên nền tối */
+        .section-card {
+            background: rgba(30, 41, 59, 0.75);
+            backdrop-filter: blur(0px);
+            border-radius: 32px;
+            box-shadow: 0 25px 40px -18px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(249, 115, 22, 0.15);
+            padding: 2rem 2rem 2.5rem;
+            transition: all 0.35s ease;
+            border: 1px solid rgba(249, 115, 22, 0.25);
+        }
+
+        .section-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 50px -20px #f9731640;
+            border-color: #f97316cc;
+            background: rgba(30, 41, 59, 0.9);
+        }
+
+        img {
+            transition: transform 0.5s ease, filter 0.4s;
+            border-radius: 24px;
+            box-shadow: 0 18px 28px -12px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(249, 115, 22, 0.4);
+        }
+
+        img:hover {
+            transform: scale(1.01) translateY(-4px);
+            filter: brightness(1.05) contrast(1.05);
+        }
+
+        /* hero hoàn toàn mới: gradient tối + mảng sắc cam */
+        .hero {
+            background: radial-gradient(circle at 20% 30%, #0f172a, #020617);
+            position: relative;
+            overflow: hidden;
+            padding: 4rem 2rem 5rem;
+            text-align: center;
+            border-bottom: 3px solid #f97316;
+            margin-bottom: 1.5rem;
+            clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+        }
+
+        .hero::before {
+            content: "⛰️";
+            font-size: 260px;
+            position: absolute;
+            bottom: -70px;
+            left: -50px;
+            opacity: 0.08;
+            pointer-events: none;
+            transform: rotate(-12deg);
+        }
+
+        .hero::after {
+            content: "🌊";
+            font-size: 220px;
+            position: absolute;
+            top: -50px;
+            right: -40px;
+            opacity: 0.08;
+            pointer-events: none;
+            transform: rotate(12deg);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffedd5, #f97316, #ea580c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            font-weight: 500;
+            background: rgba(249, 115, 22, 0.2);
+            backdrop-filter: blur(8px);
+            display: inline-block;
+            padding: 0.5rem 1.8rem;
+            border-radius: 80px;
+            border: 1px solid #f97316aa;
+            color: #fed7aa;
+        }
+
+        /* navigation mới: tối, viền cam */
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 0.9rem 1.8rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(2, 6, 23, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #f97316;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        nav a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            background: rgba(249, 115, 22, 0.05);
+            border: 1px solid transparent;
+        }
+
+        nav a:hover {
+            background: #f97316;
+            color: #0f172a;
+            border-color: #facc15;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px #f9731666;
+        }
+
+        section {
+            max-width: 1300px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        section h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            background: linear-gradient(120deg, #facc15, #f97316);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 6px solid #f97316;
+            padding-left: 1.2rem;
+        }
+
+        section h2 i {
+            color: #f97316;
+            font-size: 2rem;
+            background: none;
+        }
+
+        .section-card p {
+            margin-bottom: 1.3rem;
+            font-size: 1.05rem;
+            color: #cbd5e6;
+            font-weight: 400;
+            line-height: 1.65;
+        }
+
+        /* form góp ý – phong cách tối + cam */
+        .feedback-modern {
+            background: linear-gradient(135deg, #111827, #0f172a);
+            border-radius: 48px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(249,115,22,0.2);
+            padding: 2.2rem;
+            border: 1px solid #f9731666;
+        }
+
+        .form-group {
+            margin-bottom: 1.4rem;
+        }
+
+        .feedback-modern input, 
+        .feedback-modern textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border-radius: 28px;
+            border: 1px solid #334155;
+            background: #1e293b;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.25s;
+            outline: none;
+            color: #f1f5f9;
+        }
+
+        .feedback-modern input:focus, 
+        .feedback-modern textarea:focus {
+            border-color: #f97316;
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.4);
+            background: #0f172a;
+        }
+
+        .feedback-modern button {
+            background: linear-gradient(95deg, #ea580c, #f97316);
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: #0f172a;
+            cursor: pointer;
+            transition: all 0.25s;
+            width: 100%;
+            letter-spacing: 0.8px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+        }
+
+        .feedback-modern button:hover {
+            background: linear-gradient(95deg, #f97316, #facc15);
+            transform: scale(0.98);
+            box-shadow: 0 4px 12px #f97316aa;
+            color: #020617;
+        }
+
+        /* footer mới tông tối với sọc cam */
+        .footer-premium {
+            background: #020617;
+            color: #cbd5e6;
+            border-top: 3px solid #f97316;
+            border-radius: 48px 48px 0 0;
+            margin-top: 4rem;
+            padding: 2rem 2rem;
+        }
+
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.8rem;
+            max-width: 1300px;
+            margin: auto;
+        }
+
+        .footer-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-info div i {
+            width: 30px;
+            color: #f97316;
+        }
+
+        .footer-credit {
+            text-align: center;
+            border-top: 1px solid #334155;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* nút back to top mới */
+        .back2top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background: #f97316;
+            width: 52px;
+            height: 52px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0f172a;
+            font-size: 1.7rem;
+            box-shadow: 0 8px 20px rgba(249,115,22,0.5);
+            transition: all 0.2s;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+            border: 1px solid #facc15;
+        }
+
+        .back2top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back2top:hover {
+            background: #ea580c;
+            transform: translateY(-6px) scale(1.02);
+            color: white;
+        }
+
+        @media (max-width: 780px) {
+            .hero h1 { font-size: 2.6rem; }
+            section h2 { font-size: 1.9rem; }
+            .section-card { padding: 1.5rem; }
+            nav a { padding: 0.4rem 0.9rem; font-size: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="back2top" id="backToTopBtn">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
+<header class="hero">
+    <h1><i class="fas fa-mountain-city"></i> NINH BÌNH HÙNG VĨ</h1>
+    <p>Bảo tồn di sản – Phát triển xanh bền vững</p>
+</header>
+
+<nav>
+    <a href="#muc1"><i class="fas fa-tree"></i> Tổng quan</a>
+    <a href="#muc2"><i class="fas fa-chart-simple"></i> Hiện trạng</a>
+    <a href="#muc3"><i class="fas fa-biohazard"></i> Nguyên nhân</a>
+    <a href="#muc4"><i class="fas fa-triangle-exclamation"></i> Hệ lụy</a>
+    <a href="#muc5"><i class="fas fa-hand-sparkles"></i> Giải pháp</a>
+    <a href="#gopy"><i class="fas fa-message"></i> Đóng góp ý kiến</a>
+</nav>
+
+<main>
+    <!-- MỤC 1: GIỚI THIỆU NINH BÌNH - Ảnh tam-coc.jpg -->
+    <section id="muc1">
+        <div class="section-card">
+            <h2><i class="fas fa-water"></i> Hành trình “Vịnh Hạ Long trên cạn”</h2>
+            <img src="tam-coc.jpg" alt="Tam Cốc Ninh Bình" loading="lazy" style="width:100%; margin: 20px 0; object-fit:cover;">
+            <p>Ninh Bình – vùng đất cố đô linh thiêng, được thiên nhiên ưu ái ban tặng những dãy núi đá vôi trùng điệp, dòng sông xanh uốn lượn và những cánh đồng lúa bạt ngàn. Quần thể danh thắng Tràng An – Tam Cốc – Bích Động không chỉ là niềm tự hào của Việt Nam mà còn là Di sản Văn hóa và Thiên nhiên Thế giới được UNESCO vinh danh.</p>
+            <p>Nơi đây lưu giữ hồn cốt của kinh đô Hoa Lư xưa, chùa Bái Đính với kiến trúc Phật giáo đồ sộ, cùng Vườn quốc gia Cúc Phương – khu bảo tồn đa dạng sinh học hàng đầu Đông Nam Á. Sự giao thoa giữa văn hóa lịch sử và cảnh quan kỳ vĩ đã tạo nên một Ninh Bình đầy quyến rũ.</p>
+            <p>Tuy nhiên, trước sức ép du lịch gia tăng và biến đổi khí hậu, việc bảo vệ môi trường nơi đây đòi hỏi hành động khẩn trương. Giữ gìn dòng sông trong xanh, núi non bát ngát là trách nhiệm của mỗi du khách và thế hệ hôm nay.</p>
+        </div>
+    </section>
+
+    <!-- MỤC 2: THỰC TRẠNG MÔI TRƯỜNG - Ảnh Thuc-trang-moi-truong.png -->
+    <section id="muc2">
+        <div class="section-card">
+            <h2><i class="fas fa-chart-line"></i> Thực trạng áp lực môi trường</h2>
+            <img src="Thuc-trang-moi-truong.png" alt="Thuyền trên sông Tràng An" loading="lazy" style="width:100%; margin: 20px 0;">
+            <p>Lượng khách tham quan Tràng An, Tam Cốc ngày càng đông, đặc biệt vào mùa lễ hội. Rác thải nhựa như chai nước, túi nilon, ống hút bị vứt xuống lòng sông gây ô nhiễm nguồn nước và ảnh hưởng đến hệ sinh thái thủy sinh. Nhiều điểm du lịch chưa có hệ thống xử lý nước thải tập trung, khiến chất lượng nước sông Ngô Đồng suy giảm.</p>
+            <p>Hoạt động giao thông đường bộ và đường thủy gia tăng dẫn đến bụi mịn, khí thải, tiếng ồn. Tình trạng khai thác đá vôi trái phép tại một số mỏ ngoài vùng lõi vẫn tiềm ẩn nguy cơ phá vỡ cảnh quan. Nếu không có sự can thiệp mạnh mẽ, vẻ đẹp “cố đô” sẽ bị tổn hại khó phục hồi.</p>
+        </div>
+    </section>
+
+    <!-- MỤC 3: NGUYÊN NHÂN - Ảnh nguyen-nhan-gay-o-nhiem-moi-truong.jpg -->
+    <section id="muc3">
+        <div class="section-card">
+            <h2><i class="fas fa-microscope"></i> Nguyên nhân gốc rễ</h2>
+            <img src="nguyen-nhan-gay-o-nhiem-moi-truong.jpg" alt="Hang Múa Ninh Bình" loading="lazy" style="width:100%; margin: 20px 0;">
+            <p>Du lịch phát triển nóng, thiếu kiểm soát chặt chẽ về rác thải và nước thải. Ý thức một bộ phận du khách còn hạn chế, xả rác không đúng nơi quy định. Bên cạnh đó, việc sử dụng phân bón hóa học và thuốc bảo vệ thực vật trong nông nghiệp tại vùng đệm khiến nước mặt bị ô nhiễm dinh dưỡng, gây hiện tượng phú dưỡng.</p>
+            <p>Các cơ sở lưu trú, nhà hàng ven sông chưa đầu tư hệ thống xử lý nước thải đạt chuẩn. Công tác quản lý chất thải rắn tại các điểm tham quan còn bất cập, thiếu thùng rác phân loại. Người dân địa phương đôi khi vẫn đốt rác thải sinh hoạt lộ thiên, ảnh hưởng đến chất lượng không khí.</p>
+        </div>
+    </section>
+
+    <!-- MỤC 4: HẬU QUẢ - Ảnh hau-qua-o-nhiem-mt.jpg -->
+    <section id="muc4">
+        <div class="section-card">
+            <h2><i class="fas fa-skull-crossbones"></i> Hậu quả nếu không hành động</h2>
+            <img src="hau-qua-o-nhiem-mt.jpg" alt="Chùa Bái Đính" loading="lazy" style="width:100%; margin: 20px 0;">
+            <p>Ô nhiễm nước và rác thải nhựa sẽ giết chết các loài thủy sinh, làm mất đi hệ sinh thái đặc trưng của các vùng ngập nước Tràng An. Dòng sông không còn trong xanh, ảnh hưởng trực tiếp đến sinh kế của hàng nghìn người dân làm nghề chèo thuyền, dịch vụ du lịch.</p>
+            <p>Cảnh quan suy thoái sẽ khiến du khách quay lưng, gây thiệt hại hàng nghìn tỷ đồng cho ngành du lịch. Biến đổi khí hậu kết hợp với mất rừng làm gia tăng lũ quét, sạt lở núi đá vôi. Ninh Bình có thể đánh mất danh hiệu “di sản thiên nhiên thế giới” nếu không hành động kịp thời.</p>
+        </div>
+    </section>
+
+    <!-- MỤC 5: GIẢI PHÁP BỀN VỮNG - Ảnh ninhibinh.jpg (tên chủ đề Ninh Bình) -->
+    <section id="muc5">
+        <div class="section-card">
+            <h2><i class="fas fa-seedling"></i> Giải pháp cho tương lai xanh</h2>
+            <img src="ninhibinh.jpg" alt="" loading="lazy" style="width:100%; margin: 20px 0;">
+            <p>Để bảo vệ Ninh Bình mãi xanh, mỗi du khách hãy nói không với rác thải nhựa, mang theo bình nước cá nhân, bỏ rác đúng nơi quy định. Các điểm tham quan cần triển khai mô hình “du lịch không rác thải”, lắp đặt thùng rác phân loại và tăng cường đội ngũ thu gom.</p>
+            <p>Chính quyền tỉnh cần đầu tư hệ thống xử lý nước thải tập trung, xử phạt nghiêm hành vi xả thải trái phép. Khuyến khích phương tiện thân thiện môi trường như xe điện, thuyền chạy bằng năng lượng mặt trời. Đồng thời, đẩy mạnh tái chế, trồng thêm cây xanh và phục hồi rừng ngập mặn, tổ chức các chiến dịch “Ngày thứ bảy tình nguyện vì môi trường”.</p>
+            <p>Giáo dục ý thức bảo vệ di sản cho cộng đồng và học sinh là chìa khóa lâu dài. Hãy chung tay giữ gìn Ninh Bình – “viên ngọc xanh” giữa lòng miền Bắc Việt Nam.</p>
+        </div>
+    </section>
+
+    <!-- Góp ý - form phong cách mới -->
+    <section id="gopy">
+        <div class="feedback-modern section-card" style="background: linear-gradient(135deg, #0f172a, #030712); border: 1px solid #f97316;">
+            <h2 style="border-left-color: #facc15;"><i class="fas fa-comment-dots"></i> Đồng hành cùng Ninh Bình xanh</h2>
+            <form id="feedbackForm">
+                <div class="form-group">
+                    <input type="text" placeholder="🏞️ Họ và tên" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="📬 Địa chỉ email" required>
+                </div>
+                <div class="form-group">
+                    <textarea rows="5" placeholder="✨ Chia sẻ ý tưởng / góp ý để bảo vệ môi trường Ninh Bình bền vững..." required></textarea>
+                </div>
+                <button type="submit"><i class="fas fa-leaf"></i> Gửi góp ý – Hành động vì di sản</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<footer class="footer-premium">
+    <div class="footer-grid">
+        <div class="footer-info">
+            <div><i class="fas fa-users"></i> Tổ 2 - 12C3 | Niềm tự hào Ninh Bình</div>
+            <div><i class="fas fa-fire"></i> Bảo tồn di sản, phát triển bền vững</div>
+        </div>
+    </div>
+    <div class="footer-credit">
+        <span><i class="far fa-copyright"></i> 2026 - Ninh Bình: Di sản muôn đời</span>
+    </div>
+</footer>
+
+<script>
+    // Back to top button
+    const backBtn = document.getElementById('backToTopBtn');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+            backBtn.classList.add('show');
+        } else {
+            backBtn.classList.remove('show');
+        }
+    });
+    backBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Form submission alert mới
+    const form = document.getElementById('feedbackForm');
+    if(form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('🌄 Cảm ơn bạn! Góp ý của bạn sẽ giúp Ninh Bình ngày càng xanh – sạch – đẹp. Hãy lan tỏa thông điệp bảo vệ di sản!');
+            form.reset();
+        });
+    }
+
+    // Active nav highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const scrollPos = window.scrollY + 120;
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if(scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+        navLinks.forEach(link => {
+            link.style.background = 'rgba(249, 115, 22, 0.05)';
+            link.style.border = '1px solid transparent';
+            if(link.getAttribute('href') === '#' + current) {
+                link.style.background = '#f97316';
+                link.style.color = '#0f172a';
+                link.style.border = '1px solid #facc15';
+            } else {
+                link.style.color = '#e2e8f0';
+            }
+        });
+    });
+</script>
+</body>
+</html>
